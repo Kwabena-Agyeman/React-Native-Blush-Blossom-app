@@ -2,12 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+
 import { client } from "../shopify";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
+import Routes from "../navigation/Routes";
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
+  const navigation = useNavigation();
 
   const fetchAllCollections = async () => {
     let data = await client.collection.fetchAllWithProducts();
@@ -18,7 +23,16 @@ const Collections = () => {
   return (
     <View style={styles.container}>
       {collections.map((collection) => (
-        <TouchableOpacity key={collection.id} style={styles.buttonContainer}>
+        <TouchableOpacity
+          key={collection.id}
+          style={styles.buttonContainer}
+          onPress={() =>
+            navigation.navigate(Routes.CollectionProductsScreen, {
+              title: collection.title,
+              products: collection.products,
+            })
+          }
+        >
           <View style={styles.overlayContainer}>
             <Text style={styles.overlayText}>{collection.title}</Text>
           </View>

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flexDirection: "column",
+    height: 300,
     justifyContent: "center",
     overflow: "hidden",
     padding: spacing.sm,
@@ -68,15 +69,15 @@ const styles = StyleSheet.create({
   detailsContainer: {
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,.8)",
-    bottom: 20,
+    // bottom: 20,
     flexDirection: "row",
-    height: 40,
+    height: 50,
     justifyContent: "space-around",
     overflow: "hidden",
-    padding: spacing.sm,
-    position: "absolute",
+    // padding: spacing.sm,
+    // position: "absolute",
 
-    // width: "100%",
+    width: "100%",
   },
   priceText: {
     fontFamily: fonts.fonts.body,

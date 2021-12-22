@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Platform,
   FlatList,
+  LogBox,
 } from "react-native";
 
 import { useRoute } from "@react-navigation/native";
@@ -13,6 +14,10 @@ import Constants from "expo-constants";
 
 import CollectionProductHeader from "../components/CollectionProductHeader";
 import CollectionProductCard from "../components/CollectionProductCard";
+
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
 
 const CollectionProductsScreen = () => {
   const route = useRoute();

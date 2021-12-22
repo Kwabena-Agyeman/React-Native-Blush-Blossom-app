@@ -91,10 +91,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   collectionButton: {
-    borderRadius: 20,
+    borderRadius: spacing.sm,
+    elevation: 3,
     height: 200,
     margin: spacing.md,
     overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
     width: "100%",
   },
   collectionContainer: {

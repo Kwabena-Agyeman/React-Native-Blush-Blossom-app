@@ -29,7 +29,9 @@ const FeatureImageGallery = () => {
         data={products}
         keyExtractor={FlatListKeyExtractor}
         horizontal
-        showsHorizontalScrollIndicator={false}
+        showsHorizontalScrollIndicator={true}
+        showsVerticalScrollIndicator={true}
+        persistentScrollbar={true}
         initialNumToRender={3}
         getItemLayout={(data, index) => {
           return {

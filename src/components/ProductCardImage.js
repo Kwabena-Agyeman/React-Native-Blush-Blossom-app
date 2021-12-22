@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import spacing from "../theme/spacing";
 
 const ProductCardImage = ({ image }) => {
   return (
@@ -22,13 +21,14 @@ export default React.memo(ProductCardImage);
 const styles = StyleSheet.create({
   Image: {
     // borderRadius: 10,
-    height: 300,
+    height: "100%",
     overflow: "hidden",
     resizeMode: "cover",
-    width: 200,
+    width: "100%",
   },
   ImageContainer: {
+    height: 250,
     overflow: "hidden",
-    padding: spacing.md,
+    width: "100%",
   },
 });
