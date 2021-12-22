@@ -4,7 +4,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
-import CollectionScreen from "../screens/CollectionScreen";
+import ShopNavigation from "./ShopNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,8 +26,8 @@ const AppNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="CollectionScreen"
-        component={CollectionScreen}
+        name="ShopScreen"
+        component={ShopNavigation}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="cart-outline" size={size} color={color} />
