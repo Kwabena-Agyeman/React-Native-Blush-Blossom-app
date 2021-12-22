@@ -12,14 +12,20 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
+
 import { client } from "../shopify";
+import Routes from "../navigation/Routes";
+
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 
 const CollectionScreen = () => {
   const [collections, setCollections] = useState([]);
+
+  const navigation = useNavigation();
 
   const fetchAllCollections = async () => {
     let data = await client.collection.fetchAllWithProducts();
@@ -55,6 +61,12 @@ const CollectionScreen = () => {
               <TouchableOpacity
                 key={collection.id}
                 style={styles.collectionButton}
+                onPress={() =>
+                  navigation.navigate(Routes.CollectionProductsScreen, {
+                    title: collection.title,
+                    products: collection.products,
+                  })
+                }
               >
                 <View style={styles.textOverlay}>
                   <Text style={styles.text}>{collection.title}</Text>

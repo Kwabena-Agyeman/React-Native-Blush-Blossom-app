@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 import ProductCardImage from "./ProductCardImage";
@@ -41,10 +41,14 @@ const FeatureProductCard = ({ product }) => {
 
       <TouchableOpacity style={styles.container}>
         <ProductCardImage image={product.images[0].src} />
-        <Text numberOfLines={1} style={styles.title}>
-          {product.title}
-        </Text>
-        <Text style={styles.subtitle}>$ {product.variants[0].price}</Text>
+        <View style={styles.detailsContainer}>
+          <Text numberOfLines={1} style={styles.titleText}>
+            {product.title}
+          </Text>
+          <Text style={styles.priceText}>
+            ${parseInt(product.variants[0].price, 10)}
+          </Text>
+        </View>
       </TouchableOpacity>
     </>
   );
@@ -57,7 +61,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "center",
+    overflow: "hidden",
     padding: spacing.sm,
+    width: 220,
+  },
+  detailsContainer: {
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,.8)",
+    bottom: 20,
+    flexDirection: "row",
+    height: 40,
+    justifyContent: "space-around",
+    overflow: "hidden",
+    padding: spacing.sm,
+    position: "absolute",
+
+    // width: "100%",
+  },
+  priceText: {
+    fontFamily: fonts.fonts.body,
+    fontSize: fonts.fontSizes.button,
   },
   subtitle: {
     fontFamily: fonts.fonts.title,
@@ -68,5 +91,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     width: "60%",
+  },
+  titleText: {
+    fontFamily: fonts.fonts.body,
+    fontSize: fonts.fontSizes.button,
+    width: "80%",
   },
 });

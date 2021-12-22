@@ -21,7 +21,7 @@ export default React.memo(ProductCardImage);
 
 const styles = StyleSheet.create({
   Image: {
-    borderRadius: 10,
+    // borderRadius: 10,
     height: 300,
     overflow: "hidden",
     resizeMode: "cover",

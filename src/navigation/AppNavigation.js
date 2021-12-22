@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import ShopNavigation from "./ShopNavigation";
+import Routes from "./Routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ const AppNavigation = () => {
       }}
     >
       <Tab.Screen
-        name="HomeScreen"
+        name={Routes.HomeScreen}
         component={HomeScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -26,7 +27,7 @@ const AppNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="ShopScreen"
+        name={Routes.ShopScreen}
         component={ShopNavigation}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -36,7 +37,7 @@ const AppNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="AccountScreen"
+        name={Routes.AccountScreen}
         component={HomeScreen}
         options={{
           tabBarIcon: ({ size, color }) => (

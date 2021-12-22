@@ -15,6 +15,7 @@ import spacing from "../theme/spacing";
 import CategoryTabs from "../components/CategoryTabs";
 import FeatureImageGallery from "../components/FeatureImageGallery";
 import Collections from "../components/Collections";
+import colors from "../theme/colors";
 
 const HomeScreen = () => {
   return (
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   subHeading: {
+    color: colors.brand.primary,
     fontFamily: fonts.fonts.heading,
     fontSize: fonts.fontSizes.h5,
     marginBottom: spacing.sm,

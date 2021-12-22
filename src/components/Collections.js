@@ -36,7 +36,7 @@ export default Collections;
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    borderRadius: 20,
+    // borderRadius: 20,
     height: 200,
     margin: 5,
     overflow: "hidden",

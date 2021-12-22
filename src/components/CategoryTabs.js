@@ -68,7 +68,7 @@ export default CategoryTabs;
 
 const styles = StyleSheet.create({
   selectedCategory: {
-    backgroundColor: colors.ui.primary,
+    backgroundColor: colors.brand.primary,
     borderWidth: 0,
   },
   tabContainer: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   tabs: {
     alignItems: "center",
     backgroundColor: "transparent",
-    borderRadius: spacing.md2,
+    borderRadius: spacing.sm,
     borderWidth: 1,
     justifyContent: "center",
     marginHorizontal: spacing.md,
