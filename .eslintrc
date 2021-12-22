@@ -1,0 +1,21 @@
+{
+  "extends": ["@react-native-community", "plugin:react-hooks/recommended"],
+  "parser": "babel-eslint",
+  "rules": {
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "react-native/sort-styles": [
+      "error",
+      "asc",
+      { "ignoreClassNames": false, "ignoreStyleProperties": false }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "semi": [1, "always"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}

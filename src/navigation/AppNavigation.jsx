@@ -4,6 +4,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
+import CollectionScreen from "../screens/CollectionScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,26 +16,32 @@ const AppNavigation = () => {
       }}
     >
       <Tab.Screen
-        name='HomeScreen'
+        name="HomeScreen"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name='ios-home-outline' size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="ios-home-outline" size={size} color={color} />
+          ),
           tabBarShowLabel: false,
         }}
       />
       <Tab.Screen
-        name='CollectionScreen'
-        component={HomeScreen}
+        name="CollectionScreen"
+        component={CollectionScreen}
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name='cart-outline' size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="cart-outline" size={size} color={color} />
+          ),
           tabBarShowLabel: false,
         }}
       />
       <Tab.Screen
-        name='AccountScreen'
+        name="AccountScreen"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name='person-outline' size={size} color={color} />,
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
           tabBarShowLabel: false,
         }}
       />

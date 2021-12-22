@@ -16,13 +16,15 @@ export default function App() {
     Marcellus_400Regular,
   });
 
-  if (!fontsLoaded) return <AppLoading />;
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <>
       <NavigationContainer theme={navTheme}>
         <AppNavigation />
-        <StatusBar style='auto' />
+        <StatusBar style="auto" />
       </NavigationContainer>
     </>
   );

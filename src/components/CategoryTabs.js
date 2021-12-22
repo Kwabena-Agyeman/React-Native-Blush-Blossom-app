@@ -52,7 +52,9 @@ const CategoryTabs = () => {
               <Text
                 style={[
                   styles.tabText,
-                  selectedCategory === item ? { color: colors.ui.quaternary } : null,
+                  selectedCategory === item
+                    ? { color: colors.ui.quaternary }
+                    : null,
                 ]}
               >
                 {item}
@@ -73,19 +75,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md2,
     paddingVertical: spacing.sm,
   },
-  tabs: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent",
-    borderWidth: 1,
-    borderRadius: spacing.md2,
-    marginHorizontal: spacing.md,
-  },
   tabText: {
     color: colors.ui.primary,
-    paddingHorizontal: spacing.lg2,
-    paddingVertical: spacing.md2,
     fontFamily: fonts.fonts.body,
     fontSize: fonts.fontSizes.button,
+    paddingHorizontal: spacing.lg2,
+    paddingVertical: spacing.md2,
+  },
+  tabs: {
+    alignItems: "center",
+    backgroundColor: "transparent",
+    borderRadius: spacing.md2,
+    borderWidth: 1,
+    justifyContent: "center",
+    marginHorizontal: spacing.md,
   },
 });

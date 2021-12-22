@@ -1,7 +1,14 @@
 /** @format */
 
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Constants from "expo-constants";
 import fonts from "../theme/fonts";
@@ -20,52 +27,31 @@ const HomeScreen = () => {
       style={styles.backgroundImage}
       blurRadius={100}
     >
-      <ScrollView
-        style={{
-          flex: 1,
-          height: "100%",
-        }}
-      >
+      <ScrollView style={styles.scrollView}>
         <SafeAreaView style={styles.container}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              marginTop: spacing.md,
-            }}
-          >
+          <View style={styles.logoContainer}>
             <Image
               source={require("../../assets/BBLogo.png")}
-              style={{
-                width: 100,
-                height: 60,
-                resizeMode: "cover",
-              }}
+              style={styles.logo}
             />
           </View>
           <Text style={styles.heading}>Find your style</Text>
 
           <CategoryTabs />
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <View style={styles.subHeadingContainer}>
             <Text style={[styles.heading, { fontSize: 34 }]}>Most popular</Text>
           </View>
           <FeatureImageGallery />
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginTop: spacing.md3,
-            }}
-          >
+          <View style={styles.collectionHeadingContainer}>
             <Text style={[styles.heading, { fontSize: 34 }]}>Collections</Text>
-            <Text style={[styles.heading, { fontSize: 16, color: colors.brand.primary }]}>See all</Text>
+            <Text
+              style={[
+                styles.heading,
+                { fontSize: 16, color: colors.brand.primary },
+              ]}
+            >
+              See all
+            </Text>
           </View>
           <Collections />
         </SafeAreaView>
@@ -77,22 +63,45 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
+  collectionHeadingContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: spacing.md3,
+  },
   container: {
     flex: 1,
-    // padding: spacing.sm,
   },
   heading: {
-    fontSize: fonts.fontSizes.h3,
     fontFamily: fonts.fonts.heading,
+    fontSize: fonts.fontSizes.h3,
     fontWeight: "normal",
-    paddingHorizontal: spacing.lg,
     marginBottom: spacing.sm,
-    // textTransform: "capitalize",
+    paddingHorizontal: spacing.lg,
+  },
+  logo: {
+    height: 60,
+    resizeMode: "cover",
+    width: 100,
+  },
+  logoContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: spacing.md,
+  },
+  scrollView: {
+    flex: 1,
+    height: "100%",
   },
   subHeading: {
     fontFamily: fonts.fonts.body,
   },
-  backgroundImage: {
-    flex: 1,
+  subHeadingContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

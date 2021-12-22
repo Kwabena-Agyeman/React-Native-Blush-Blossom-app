@@ -7,28 +7,29 @@ import spacing from "../theme/spacing";
 
 const ProductCardImage = ({ image }) => {
   return (
-    <View
-      style={{
-        overflow: "hidden",
-        padding: spacing.md,
-      }}
-    >
+    <View style={styles.ImageContainer}>
       <Image
         source={{
           uri: image,
         }}
-        style={{
-          width: 200,
-          height: 300,
-          borderRadius: 10,
-          overflow: "hidden",
-          resizeMode: "cover",
-        }}
+        style={styles.Image}
       />
     </View>
   );
 };
 
-export default ProductCardImage;
+export default React.memo(ProductCardImage);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  Image: {
+    borderRadius: 10,
+    height: 300,
+    overflow: "hidden",
+    resizeMode: "cover",
+    width: 200,
+  },
+  ImageContainer: {
+    overflow: "hidden",
+    padding: spacing.md,
+  },
+});

@@ -1,11 +1,10 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { client } from "../shopify";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
-import spacing from "../theme/spacing";
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
