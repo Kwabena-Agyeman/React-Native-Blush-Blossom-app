@@ -16,56 +16,15 @@ const Collections = () => {
 
   useEffect(() => fetchAllCollections());
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        alignContent: "center",
-      }}
-    >
+    <View style={styles.container}>
       {collections.map((collection) => (
-        <TouchableOpacity
-          key={collection.id}
-          style={{
-            width: "45%",
-            height: 200,
-            borderRadius: 20,
-            overflow: "hidden",
-            margin: 5,
-          }}
-        >
-          <View
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              top: "0%",
-              left: "0%",
-              zIndex: 999,
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: colors.text.inverse,
-                fontFamily: fonts.fonts.body,
-                fontSize: fonts.fontSizes.h5,
-                textAlign: "center",
-              }}
-            >
-              {collection.title}
-            </Text>
+        <TouchableOpacity key={collection.id} style={styles.buttonContainer}>
+          <View style={styles.overlayContainer}>
+            <Text style={styles.overlayText}>{collection.title}</Text>
           </View>
           <Image
             source={{ uri: collection.image.src }}
-            style={{
-              width: "100%",
-              height: 200,
-            }}
+            style={styles.overlayImage}
           />
         </TouchableOpacity>
       ))}
@@ -75,4 +34,40 @@ const Collections = () => {
 
 export default Collections;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  buttonContainer: {
+    borderRadius: 20,
+    height: 200,
+    margin: 5,
+    overflow: "hidden",
+    width: "45%",
+  },
+  container: {
+    alignContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+  overlayContainer: {
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    height: "100%",
+    justifyContent: "center",
+    left: "0%",
+    position: "absolute",
+    top: "0%",
+    width: "100%",
+    zIndex: 999,
+  },
+  overlayImage: {
+    height: 200,
+    width: "100%",
+  },
+  overlayText: {
+    color: colors.text.inverse,
+    fontFamily: fonts.fonts.body,
+    fontSize: fonts.fontSizes.h5,
+    textAlign: "center",
+  },
+});

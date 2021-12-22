@@ -10,13 +10,9 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Constants from "expo-constants";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
-import colors from "../theme/colors";
-import { fetchAllProducts } from "../shopify";
 import CategoryTabs from "../components/CategoryTabs";
-import ProductCardImage from "../components/ProductCardImage";
 import FeatureImageGallery from "../components/FeatureImageGallery";
 import Collections from "../components/Collections";
 
@@ -39,19 +35,11 @@ const HomeScreen = () => {
 
           <CategoryTabs />
           <View style={styles.subHeadingContainer}>
-            <Text style={[styles.heading, { fontSize: 34 }]}>Most popular</Text>
+            <Text style={styles.subHeading}>Most popular</Text>
           </View>
           <FeatureImageGallery />
           <View style={styles.collectionHeadingContainer}>
-            <Text style={[styles.heading, { fontSize: 34 }]}>Collections</Text>
-            <Text
-              style={[
-                styles.heading,
-                { fontSize: 16, color: colors.brand.primary },
-              ]}
-            >
-              See all
-            </Text>
+            <Text style={styles.subHeading}>Collections</Text>
           </View>
           <Collections />
         </SafeAreaView>
@@ -97,7 +85,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   subHeading: {
-    fontFamily: fonts.fonts.body,
+    fontFamily: fonts.fonts.heading,
+    fontSize: fonts.fontSizes.h5,
+    marginBottom: spacing.sm,
+    paddingHorizontal: spacing.lg,
   },
   subHeadingContainer: {
     alignItems: "center",

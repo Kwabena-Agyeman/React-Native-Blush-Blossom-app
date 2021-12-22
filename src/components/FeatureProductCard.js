@@ -39,34 +39,12 @@ const FeatureProductCard = ({ product }) => {
         </View>
       )} */}
 
-      <TouchableOpacity
-        style={{
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: spacing.sm,
-        }}
-      >
+      <TouchableOpacity style={styles.container}>
         <ProductCardImage image={product.images[0].src} />
-        <Text
-          numberOfLines={1}
-          style={{
-            fontSize: 16,
-            fontFamily: fonts.fonts.body,
-            width: "60%",
-            textAlign: "center",
-          }}
-        >
+        <Text numberOfLines={1} style={styles.title}>
           {product.title}
         </Text>
-        <Text
-          style={{
-            fontSize: 18,
-            fontFamily: fonts.fonts.title,
-          }}
-        >
-          $ {product.variants[0].price}
-        </Text>
+        <Text style={styles.subtitle}>$ {product.variants[0].price}</Text>
       </TouchableOpacity>
     </>
   );
@@ -74,4 +52,21 @@ const FeatureProductCard = ({ product }) => {
 
 export default React.memo(FeatureProductCard);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: spacing.sm,
+  },
+  subtitle: {
+    fontFamily: fonts.fonts.title,
+    fontSize: 18,
+  },
+  title: {
+    fontFamily: fonts.fonts.body,
+    fontSize: 16,
+    textAlign: "center",
+    width: "60%",
+  },
+});

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
   TouchableOpacity,
   FlatList,
 } from "react-native";
@@ -41,9 +40,7 @@ const CategoryTabs = () => {
               key={index}
               style={[
                 styles.tabs,
-                selectedCategory === item
-                  ? { backgroundColor: colors.ui.primary, borderWidth: 0 }
-                  : null,
+                selectedCategory === item ? styles.selectedCategory : null,
               ]}
               onPress={() => {
                 setSelectedCategory(item);
@@ -70,6 +67,10 @@ const CategoryTabs = () => {
 export default CategoryTabs;
 
 const styles = StyleSheet.create({
+  selectedCategory: {
+    backgroundColor: colors.ui.primary,
+    borderWidth: 0,
+  },
   tabContainer: {
     marginVertical: spacing.md2,
     paddingHorizontal: spacing.md2,

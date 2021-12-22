@@ -1,8 +1,7 @@
 /** @format */
 
-import { Inter_100Thin } from "@expo-google-fonts/inter";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import spacing from "../theme/spacing";
 
 const ProductCardImage = ({ image }) => {

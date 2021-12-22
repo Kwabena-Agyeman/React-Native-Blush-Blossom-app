@@ -45,7 +45,7 @@ const FeatureImageGallery = () => {
   );
 };
 
-export default FeatureImageGallery;
+export default React.memo(FeatureImageGallery);
 
 const styles = StyleSheet.create({
   galleryContainer: {},
