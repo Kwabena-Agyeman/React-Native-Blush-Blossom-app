@@ -27,9 +27,12 @@ const Collections = () => {
           key={collection.id}
           style={styles.buttonContainer}
           onPress={() =>
-            navigation.navigate(Routes.CollectionProductsScreen, {
-              title: collection.title,
-              products: collection.products,
+            navigation.navigate(Routes.ShopScreen, {
+              screen: Routes.CollectionProductsScreen,
+              params: {
+                title: collection.title,
+                products: collection.products,
+              },
             })
           }
         >
@@ -46,7 +49,7 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default React.memo(Collections);
 
 const styles = StyleSheet.create({
   buttonContainer: {

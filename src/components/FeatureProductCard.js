@@ -4,7 +4,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
-import ProductCardImage from "./ProductCardImage";
+import FeatureProductImage from "./FeatureProductImage";
 
 const FeatureProductCard = ({ product }) => {
   return (
@@ -40,7 +40,7 @@ const FeatureProductCard = ({ product }) => {
       )} */}
 
       <TouchableOpacity style={styles.container}>
-        <ProductCardImage image={product.images[0].src} />
+        <FeatureProductImage image={product.images[0].src} />
         <View style={styles.detailsContainer}>
           <Text numberOfLines={1} style={styles.titleText}>
             {product.title}

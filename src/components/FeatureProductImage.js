@@ -3,7 +3,7 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 
-const ProductCardImage = ({ image }) => {
+const FeatureProductImage = ({ image }) => {
   return (
     <View style={styles.ImageContainer}>
       <Image
@@ -16,7 +16,7 @@ const ProductCardImage = ({ image }) => {
   );
 };
 
-export default React.memo(ProductCardImage);
+export default React.memo(FeatureProductImage);
 
 const styles = StyleSheet.create({
   Image: {

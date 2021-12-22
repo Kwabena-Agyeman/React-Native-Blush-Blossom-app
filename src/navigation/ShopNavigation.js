@@ -11,6 +11,9 @@ const ShopNavigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        // headerRight: () => {
+        //   return <Button title="Back" />;
+        // },
       }}
     >
       <Stack.Screen

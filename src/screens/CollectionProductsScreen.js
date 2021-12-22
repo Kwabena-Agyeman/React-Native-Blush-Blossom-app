@@ -11,9 +11,11 @@ import {
 import { useRoute } from "@react-navigation/native";
 
 import Constants from "expo-constants";
+import Routes from "../navigation/Routes";
 
 import CollectionProductHeader from "../components/CollectionProductHeader";
 import CollectionProductCard from "../components/CollectionProductCard";
+import AndroidBackButton from "../components/AndroidBackButton";
 
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
@@ -22,6 +24,8 @@ LogBox.ignoreLogs([
 const CollectionProductsScreen = () => {
   const route = useRoute();
   const { title, products } = route.params;
+
+  const android = Platform.OS === "android";
 
   const ProductKeyExtractor = useCallback((product) => {
     return product.id;
@@ -33,6 +37,7 @@ const CollectionProductsScreen = () => {
       blurRadius={100}
     >
       <SafeAreaView style={styles.container}>
+        {android && <AndroidBackButton route={Routes.CollectionScreen} />}
         <FlatList
           data={products}
           keyExtractor={ProductKeyExtractor}
@@ -40,6 +45,7 @@ const CollectionProductsScreen = () => {
           horizontal={false}
           showsVerticalScrollIndicator
           scrollEnabled
+          initialNumToRender={5}
           numColumns={2}
           columnWrapperStyle={styles.columnWrapperStyle}
           renderItem={({ item: product }) => {

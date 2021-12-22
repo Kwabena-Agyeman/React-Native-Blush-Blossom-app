@@ -23,7 +23,7 @@ const CollectionProductCard = ({ product }) => {
   );
 };
 
-export default CollectionProductCard;
+export default React.memo(CollectionProductCard);
 
 const styles = StyleSheet.create({
   container: {
