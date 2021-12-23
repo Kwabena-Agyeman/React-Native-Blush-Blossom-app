@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  modalVisible: false,
   favorites: [],
   cart: [],
   checkout: {
@@ -30,10 +31,18 @@ export const shopSlice = createSlice({
       state.checkout.id = action.payload.id;
       state.checkout.LineItems = action.payload.lineItems;
     },
+    toggleModal: (state, action) => {
+      state.modalVisible = action.payload;
+    },
   },
 });
 
-export const { addToCart, addToFavorites, removeFromFavorites, setCheckout } =
-  shopSlice.actions;
+export const {
+  addToCart,
+  addToFavorites,
+  removeFromFavorites,
+  setCheckout,
+  toggleModal,
+} = shopSlice.actions;
 
 export default shopSlice.reducer;

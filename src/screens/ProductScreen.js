@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../redux/slices/shopSlice";
+import { useSelector } from "react-redux";
 import { client } from "../shopify";
 
 import Routes from "../navigation/Routes";
