@@ -1,26 +1,31 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
+import { StyleSheet, TouchableHighlight } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { addToFavorites, removeFromFavorites } from "../redux/slices/shopSlice";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Favorite = ({ productId }) => {
   const favorites = useSelector((state) => state.shop.favorites);
+  const dispatch = useDispatch();
 
   const inFavorites = favorites.some((favoriteId) => favoriteId === productId);
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight
+      underlayColor={"rgba(0,0,0,0)"}
       onPress={
-        inFavorites ? () => console.log("hello") : () => console.log("bye")
+        inFavorites
+          ? () => dispatch(removeFromFavorites(productId))
+          : () => dispatch(addToFavorites(productId))
       }
       style={styles.FavIcon}
     >
       <FontAwesome
         name={inFavorites ? "heart" : "heart-o"}
         size={30}
-        color={inFavorites ? "red" : "black"}
+        color={inFavorites ? "#e52325" : "black"}
       />
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 

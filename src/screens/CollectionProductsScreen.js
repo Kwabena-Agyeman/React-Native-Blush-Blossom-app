@@ -25,8 +25,6 @@ const CollectionProductsScreen = () => {
   const route = useRoute();
   const { title, products } = route.params;
 
-  const android = Platform.OS === "android";
-
   const ProductKeyExtractor = useCallback((product) => {
     return product.id;
   }, []);
