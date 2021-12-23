@@ -7,41 +7,12 @@ import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 import FeatureProductImage from "./FeatureProductImage";
 import Routes from "../navigation/Routes";
+import Favorite from "./Favorite";
 
 const FeatureProductCard = ({ product }) => {
   const navigation = useNavigation();
   return (
     <>
-      {/* {!favorites.some((favoriteId) => favoriteId === product.id) ? (
-        <View>
-          <TouchableOpacity
-            onPress={() => toggleFavorite(product.id, product)}
-            style={{
-              position: "absolute",
-              zIndex: 999,
-              top: 20,
-              right: 30,
-            }}
-          >
-            <FontAwesome name='heart-o' size={24} color='black' />
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <View>
-          <TouchableOpacity
-            onPress={() => toggleFavorite(product.id, product)}
-            style={{
-              position: "absolute",
-              zIndex: 999,
-              top: 20,
-              right: 30,
-            }}
-          >
-            <FontAwesome name='heart' size={24} color='#fb3958' />
-          </TouchableOpacity>
-        </View>
-      )} */}
-
       <TouchableOpacity
         style={styles.container}
         onPress={() => {
@@ -57,6 +28,7 @@ const FeatureProductCard = ({ product }) => {
           });
         }}
       >
+        <Favorite productId={product.id} />
         <FeatureProductImage image={product.images[0].src} />
         <View style={styles.detailsContainer}>
           <Text numberOfLines={1} style={styles.titleText}>
@@ -79,9 +51,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: 300,
     justifyContent: "center",
-    overflow: "hidden",
+    overflow: "visible",
     padding: spacing.sm,
     width: 220,
+    zIndex: 2,
   },
   detailsContainer: {
     alignItems: "center",
@@ -90,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 50,
     justifyContent: "space-around",
-    overflow: "hidden",
+    overflow: "visible",
     // padding: spacing.sm,
     // position: "absolute",
 

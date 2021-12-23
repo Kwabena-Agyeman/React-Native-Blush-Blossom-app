@@ -13,6 +13,7 @@ const ShopNavigation = () => {
       screenOptions={{
         headerShown: false,
         presentation: "card",
+        gestureEnabled: true,
       }}
     >
       <Stack.Screen

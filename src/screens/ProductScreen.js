@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
 import colors from "../theme/colors";
 import spacing from "../theme/spacing";
+import AndroidBackButton from "../components/AndroidBackButton";
 
 const ProductScreen = () => {
   const route = useRoute();
@@ -11,6 +13,9 @@ const ProductScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.backButton}>
+        <AndroidBackButton route={Routes.CollectionScreen} />
+      </View>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{title}</Text>
@@ -28,6 +33,12 @@ const ProductScreen = () => {
 export default ProductScreen;
 
 const styles = StyleSheet.create({
+  backButton: {
+    left: 20,
+    position: "absolute",
+    top: 60,
+    zIndex: 1,
+  },
   button: {
     backgroundColor: colors.brand.primary,
     borderRadius: spacing.md,

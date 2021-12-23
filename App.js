@@ -3,6 +3,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import AppLoading from "expo-app-loading";
+import { store } from "./src/redux/store";
+import { Provider } from "react-redux";
 import { Marcellus_400Regular } from "@expo-google-fonts/marcellus";
 import { Muli_400Regular } from "@expo-google-fonts/muli";
 import { useFonts } from "expo-font";
@@ -22,10 +24,12 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer theme={navTheme}>
-        <AppNavigation />
-        <StatusBar style="auto" />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer theme={navTheme}>
+          <AppNavigation />
+          <StatusBar style="auto" />
+        </NavigationContainer>
+      </Provider>
     </>
   );
 }

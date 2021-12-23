@@ -34,7 +34,7 @@ const FeatureImageGallery = () => {
         showsHorizontalScrollIndicator={true}
         showsVerticalScrollIndicator={true}
         persistentScrollbar={true}
-        initialNumToRender={3}
+        initialNumToRender={2}
         getItemLayout={(data, index) => {
           return {
             length: 140,
@@ -52,5 +52,7 @@ const FeatureImageGallery = () => {
 export default React.memo(FeatureImageGallery);
 
 const styles = StyleSheet.create({
-  galleryContainer: {},
+  galleryContainer: {
+    zIndex: 1,
+  },
 });
