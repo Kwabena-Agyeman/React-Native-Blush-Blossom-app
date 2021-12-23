@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CollectionProductsScreen from "../screens/CollectionProductsScreen";
 import CollectionScreen from "../screens/CollectionScreen";
+import ProductScreen from "../screens/ProductScreen";
 import Routes from "./Routes";
 
 const Stack = createNativeStackNavigator();
@@ -11,9 +12,7 @@ const ShopNavigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        // headerRight: () => {
-        //   return <Button title="Back" />;
-        // },
+        presentation: "card",
       }}
     >
       <Stack.Screen
@@ -24,6 +23,7 @@ const ShopNavigation = () => {
         name={Routes.CollectionProductsScreen}
         component={CollectionProductsScreen}
       />
+      <Stack.Screen name={Routes.ProductScreen} component={ProductScreen} />
     </Stack.Navigator>
   );
 };

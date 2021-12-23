@@ -4,4 +4,5 @@ export default Object.freeze({
   AccountScreen: "AccountScreen",
   CollectionScreen: "CollectionScreen",
   CollectionProductsScreen: "CollectionProductsScreen",
+  ProductScreen: "ProductScreen",
 });

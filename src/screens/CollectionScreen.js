@@ -32,7 +32,11 @@ const CollectionScreen = () => {
     setCollections(data);
   };
 
-  useEffect(() => fetchAllCollections());
+  useEffect(() => {
+    const unsubscribe = fetchAllCollections();
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <ImageBackground
@@ -44,7 +48,7 @@ const CollectionScreen = () => {
         <SafeAreaView style={styles.container}>
           <View
             style={{
-              padding: spacing.lg,
+              padding: spacing.xxl,
             }}
           >
             <Text

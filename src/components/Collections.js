@@ -19,7 +19,11 @@ const Collections = () => {
     setCollections(data);
   };
 
-  useEffect(() => fetchAllCollections());
+  useEffect(() => {
+    const unsubscribe = fetchAllCollections();
+
+    return () => unsubscribe();
+  }, []);
   return (
     <View style={styles.container}>
       {collections.map((collection) => (

@@ -21,7 +21,9 @@ const FeatureImageGallery = () => {
   const FlatListKeyExtractor = useCallback((item) => item.id, []);
 
   useEffect(() => {
-    fetchFeaturedCollection();
+    const unsubscribe = fetchFeaturedCollection();
+
+    return () => unsubscribe();
   }, []);
   return (
     <View style={styles.galleryContainer}>

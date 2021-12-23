@@ -1,11 +1,28 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 
 const CollectionProductCard = ({ product }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity key={product.id} style={styles.container}>
+    <TouchableOpacity
+      key={product.id}
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate(Routes.ProductScreen, {
+          screen: Routes.ProductScreen,
+          params: {
+            title: product.title,
+            price: product.variants[0].price,
+            image: product.images[0].src,
+          },
+        })
+      }
+    >
       <Image
         source={{ uri: product.images[0].src }}
         style={styles.image}

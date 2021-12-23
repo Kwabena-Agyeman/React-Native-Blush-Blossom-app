@@ -37,7 +37,7 @@ const CollectionProductsScreen = () => {
       blurRadius={100}
     >
       <SafeAreaView style={styles.container}>
-        {android && <AndroidBackButton route={Routes.CollectionScreen} />}
+        <AndroidBackButton route={Routes.CollectionScreen} />
         <FlatList
           data={products}
           keyExtractor={ProductKeyExtractor}
