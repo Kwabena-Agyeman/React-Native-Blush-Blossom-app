@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -24,17 +24,17 @@ import colors from "../theme/colors";
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
-  const createChekout = async () => {
+  const createChekout = useCallback(async () => {
     let checkout = await client.checkout.create();
     // console.log(checkout);
-    dispatch(setCheckout(checkout.id));
-  };
+    dispatch(setCheckout({ id: checkout.id, lineItems: checkout.lineItems }));
+  }, [dispatch]);
 
   useEffect(() => {
     const unsubscribe = createChekout();
 
     return () => unsubscribe();
-  }, []);
+  }, [createChekout]);
 
   return (
     <ImageBackground

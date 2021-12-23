@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   favorites: [],
   cart: [],
-  checkout: [],
+  checkout: {
+    id: "",
+    LineItems: [],
+  },
 };
 
 export const shopSlice = createSlice({
@@ -11,7 +14,7 @@ export const shopSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
+      state.cart = action.payload;
     },
     addToFavorites: (state, action) => {
       state.favorites.push(action.payload);
@@ -24,7 +27,8 @@ export const shopSlice = createSlice({
       state.favorites = newFavorites;
     },
     setCheckout: (state, action) => {
-      state.checkout = action.payload;
+      state.checkout.id = action.payload.id;
+      state.checkout.LineItems = action.payload.lineItems;
     },
   },
 });
