@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
+import Favorite from "./Favorite";
 
 const CollectionProductCard = ({ product }) => {
   const navigation = useNavigation();
@@ -23,6 +24,7 @@ const CollectionProductCard = ({ product }) => {
         })
       }
     >
+      <Favorite productId={product.id} />
       <Image
         source={{ uri: product.images[0].src }}
         style={styles.image}
