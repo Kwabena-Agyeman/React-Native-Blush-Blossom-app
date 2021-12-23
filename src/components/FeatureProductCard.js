@@ -2,11 +2,14 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 import FeatureProductImage from "./FeatureProductImage";
+import Routes from "../navigation/Routes";
 
 const FeatureProductCard = ({ product }) => {
+  const navigation = useNavigation();
   return (
     <>
       {/* {!favorites.some((favoriteId) => favoriteId === product.id) ? (
@@ -39,7 +42,21 @@ const FeatureProductCard = ({ product }) => {
         </View>
       )} */}
 
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => {
+          navigation.navigate(Routes.ShopScreen, {
+            screen: Routes.ProductScreen,
+            params: {
+              params: {
+                title: product.title,
+                image: product.images[0].src,
+                price: product.variants[0].price,
+              },
+            },
+          });
+        }}
+      >
         <FeatureProductImage image={product.images[0].src} />
         <View style={styles.detailsContainer}>
           <Text numberOfLines={1} style={styles.titleText}>
