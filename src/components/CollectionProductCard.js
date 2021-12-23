@@ -9,6 +9,7 @@ import Favorite from "./Favorite";
 
 const CollectionProductCard = ({ product }) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       key={product.id}
@@ -20,6 +21,7 @@ const CollectionProductCard = ({ product }) => {
             title: product.title,
             price: product.variants[0].price,
             image: product.images[0].src,
+            variantId: product.variants[0].id,
           },
         })
       }

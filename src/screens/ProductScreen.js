@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import { client } from "../shopify";
+
 import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
 import colors from "../theme/colors";

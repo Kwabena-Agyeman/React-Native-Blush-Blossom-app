@@ -23,6 +23,7 @@ const FeatureProductCard = ({ product }) => {
                 title: product.title,
                 image: product.images[0].src,
                 price: product.variants[0].price,
+                variantId: product.variants[0].id,
               },
             },
           });

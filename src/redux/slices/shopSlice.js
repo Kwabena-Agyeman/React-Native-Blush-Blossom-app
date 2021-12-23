@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   favorites: [],
   cart: [],
+  checkout: [],
 };
 
 export const shopSlice = createSlice({
@@ -22,10 +23,13 @@ export const shopSlice = createSlice({
 
       state.favorites = newFavorites;
     },
+    setCheckout: (state, action) => {
+      state.checkout = action.payload;
+    },
   },
 });
 
-export const { addToCart, addToFavorites, removeFromFavorites } =
+export const { addToCart, addToFavorites, removeFromFavorites, setCheckout } =
   shopSlice.actions;
 
 export default shopSlice.reducer;

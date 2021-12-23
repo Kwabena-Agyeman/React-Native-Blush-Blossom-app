@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -10,6 +10,10 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
+import { setCheckout } from "../redux/slices/shopSlice";
+
+import { client } from "../shopify";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 import CategoryTabs from "../components/CategoryTabs";
@@ -18,6 +22,20 @@ import Collections from "../components/Collections";
 import colors from "../theme/colors";
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
+  const createChekout = async () => {
+    let checkout = await client.checkout.create();
+    // console.log(checkout);
+    dispatch(setCheckout(checkout.id));
+  };
+
+  useEffect(() => {
+    const unsubscribe = createChekout();
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <ImageBackground
       source={require("../../assets/v934-nunny-wallpaper-09-x.jpg")}
