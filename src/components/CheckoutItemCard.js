@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -8,8 +8,11 @@ import {
 } from "react-native";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
-import { Feather } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
+import colors from "../theme/colors";
+
 const CheckoutItemCard = ({ product }) => {
+  const [quantityState, setQuantityState] = useState(product.quantity);
   //   console.log("HEREE", product.product);
   return (
     <View style={styles.container}>
@@ -24,13 +27,27 @@ const CheckoutItemCard = ({ product }) => {
         <Text style={styles.currency}>
           <Text>$</Text> {product.variant.price}
         </Text>
-        <View style={styles.quantityContainer}>
-          <TouchableHighlight>
-            <Feather name="plus-square" size={28} color="black" />
-          </TouchableHighlight>
-          <Text style={styles.quantity}>{product.quantity}</Text>
-          <TouchableHighlight>
-            <Feather name="minus-square" size={28} color="black" />
+        <View style={styles.bottomDetailsRow}>
+          <View style={styles.quantityContainer}>
+            <TouchableHighlight
+              underlayColor={"rgba(255,255,255,1)"}
+              onPress={() => console.log("add")}
+            >
+              <Feather name="plus-square" size={28} color="black" />
+            </TouchableHighlight>
+            <Text style={styles.quantity}>{quantityState}</Text>
+            <TouchableHighlight
+              underlayColor={"rgba(255,255,255,1)"}
+              onPress={() => console.log("remove")}
+            >
+              <Feather name="minus-square" size={28} color="black" />
+            </TouchableHighlight>
+          </View>
+          <TouchableHighlight
+            underlayColor={"rgba(255,255,255,1)"}
+            onPress={() => console.log("remove")}
+          >
+            <AntDesign name="close" size={20} color="gray" />
           </TouchableHighlight>
         </View>
       </View>
@@ -47,6 +64,12 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     width: "50%",
   },
+  bottomDetailsRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingRight: spacing.md,
+  },
   container: {
     alignItems: "center",
     // backgroundColor: "red",
@@ -56,8 +79,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   currency: {
+    color: colors.brand.primary,
     fontFamily: fonts.fonts.body,
     fontSize: fonts.fontSizes.title,
+  },
+  deleteButton: {
+    bottom: 30,
+    position: "absolute",
+    right: 20,
   },
   detailsContainer: {
     // backgroundColor: "pink",
@@ -72,6 +101,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   quantity: {
+    color: colors.brand.primary,
     fontSize: fonts.fontSizes.body,
   },
   quantityContainer: {
@@ -83,6 +113,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fonts.fonts.body,
     fontSize: fonts.fontSizes.h5,
-    // width: "%",
+    width: "70%",
   },
 });

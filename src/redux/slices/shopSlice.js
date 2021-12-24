@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addItemToCart } from "./cartUtility";
 
 const initialState = {
   modalVisible: false,
@@ -15,7 +16,10 @@ export const shopSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cart = action.payload;
+      state.checkout.LineItems = addItemToCart(
+        state.checkout.LineItems,
+        action.payload
+      );
     },
     addToFavorites: (state, action) => {
       state.favorites.push(action.payload);

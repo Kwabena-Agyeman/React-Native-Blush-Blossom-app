@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/shopSlice";
 import { client } from "../shopify";
 
 import Routes from "../navigation/Routes";
@@ -11,20 +12,14 @@ import spacing from "../theme/spacing";
 import AndroidBackButton from "../components/AndroidBackButton";
 
 const ProductScreen = () => {
-  const checkoutId = useSelector((state) => state.shop.checkout.id);
+  // const checkoutId = useSelector((state) => state.shop.checkout.id);
+  const dispatch = useDispatch();
   const route = useRoute();
   const { title, image, price, variantId } = route.params.params;
 
   // console.log("HERE", checkoutId);
-  const AddToCart = async (Vid) => {
-    const lineItemToAdd = [
-      {
-        variantId: Vid,
-        quantity: 1,
-      },
-    ];
-
-    await client.checkout.addLineItems(checkoutId, lineItemToAdd);
+  const AddToCart = async (ProductObject) => {
+    dispatch(addToCart(ProductObject));
 
     // console.log(response);
   };
@@ -42,7 +37,7 @@ const ProductScreen = () => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => AddToCart(variantId)}
+          onPress={() => AddToCart({ title, image, price, variantId })}
         >
           <Text style={styles.buttonText}>ADD TO CART</Text>
         </TouchableOpacity>
