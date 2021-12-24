@@ -31,6 +31,9 @@ export const shopSlice = createSlice({
       state.checkout.id = action.payload.id;
       state.checkout.LineItems = action.payload.lineItems;
     },
+    setLineItems: (state, action) => {
+      state.checkout.LineItems = action.payload;
+    },
     toggleModal: (state, action) => {
       state.modalVisible = action.payload;
     },
@@ -42,6 +45,7 @@ export const {
   addToFavorites,
   removeFromFavorites,
   setCheckout,
+  setLineItems,
   toggleModal,
 } = shopSlice.actions;
 

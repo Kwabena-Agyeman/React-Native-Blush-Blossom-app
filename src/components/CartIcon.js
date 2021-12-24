@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../redux/slices/shopSlice";
 import { Feather } from "@expo/vector-icons";
@@ -15,7 +15,7 @@ const CartIcon = () => {
     >
       <View style={styles.container}>
         <View style={styles.cartIndicator} />
-        <Feather name="shopping-bag" size={30} color="black" />
+        <Feather name="shopping-bag" size={24} color="black" />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   cartIndicator: {
     backgroundColor: colors.brand.primary,
     borderRadius: 7.5,
-    height: 15,
+    height: 10,
     position: "absolute",
     right: -1,
-    top: -6,
-    width: 15,
+    top: -2,
+    width: 10,
     zIndex: -1,
   },
   container: {

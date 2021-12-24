@@ -18,7 +18,6 @@ const categories = [
   "Women",
   "Eyewear",
   "Kids",
-  "Men",
   "Floral",
   "Winter",
   "Teens",

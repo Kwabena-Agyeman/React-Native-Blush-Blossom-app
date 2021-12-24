@@ -9,14 +9,10 @@ import {
   Image,
   ScrollView,
   Modal,
-  Alert,
-  TouchableWithoutFeedback,
-  TouchableHighlight,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-import { setCheckout, toggleModal } from "../redux/slices/shopSlice";
-import { AntDesign } from "@expo/vector-icons";
+import { setCheckout } from "../redux/slices/shopSlice";
 
 import { client } from "../shopify";
 import fonts from "../theme/fonts";
@@ -26,7 +22,7 @@ import FeatureImageGallery from "../components/FeatureImageGallery";
 import Collections from "../components/Collections";
 import colors from "../theme/colors";
 import CartIcon from "../components/CartIcon";
-import { Muli_500Medium } from "@expo-google-fonts/muli";
+import Checkout from "../components/Checkout";
 
 const HomeScreen = () => {
   const modalVisible = useSelector((state) => state.shop.modalVisible);
@@ -39,9 +35,9 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const unsubscribe = () => createChekout();
+    createChekout();
 
-    return () => unsubscribe();
+    return createChekout;
   }, [createChekout]);
 
   return (
@@ -74,18 +70,11 @@ const HomeScreen = () => {
       </ScrollView>
       <Modal
         animationType="slide"
-        presentationStyle="pageSheet"
+        presentationStyle="fullScreen"
         visible={modalVisible}
         statusBarTranslucent={true}
       >
-        <SafeAreaView>
-          <TouchableHighlight
-            style={styles.closeButton}
-            onPress={() => dispatch(toggleModal(!modalVisible))}
-          >
-            <AntDesign name="close" size={34} color="black" />
-          </TouchableHighlight>
-        </SafeAreaView>
+        <Checkout />
       </Modal>
     </ImageBackground>
   );
@@ -97,11 +86,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
   },
-  closeButton: {
-    position: "absolute",
-    right: 30,
-    top: 50,
-  },
+
   collectionHeadingContainer: {
     alignItems: "center",
     flexDirection: "row",

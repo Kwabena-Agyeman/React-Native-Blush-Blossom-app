@@ -15,7 +15,7 @@ const ProductScreen = () => {
   const route = useRoute();
   const { title, image, price, variantId } = route.params.params;
 
-  console.log("HERE", checkoutId);
+  // console.log("HERE", checkoutId);
   const AddToCart = async (Vid) => {
     const lineItemToAdd = [
       {
@@ -24,12 +24,9 @@ const ProductScreen = () => {
       },
     ];
 
-    const response = await client.checkout.addLineItems(
-      checkoutId,
-      lineItemToAdd
-    );
+    await client.checkout.addLineItems(checkoutId, lineItemToAdd);
 
-    console.log(response);
+    // console.log(response);
   };
 
   return (
