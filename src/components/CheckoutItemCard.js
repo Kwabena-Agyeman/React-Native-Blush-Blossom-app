@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 const CheckoutItemCard = ({ product }) => {
   //   console.log("HEREE", product.product);
   return (
