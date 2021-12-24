@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/shopSlice";
-import { client } from "../shopify";
 
 import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
@@ -12,22 +11,18 @@ import spacing from "../theme/spacing";
 import AndroidBackButton from "../components/AndroidBackButton";
 
 const ProductScreen = () => {
-  // const checkoutId = useSelector((state) => state.shop.checkout.id);
   const dispatch = useDispatch();
   const route = useRoute();
   const { title, image, price, variantId } = route.params.params;
 
-  // console.log("HERE", checkoutId);
   const AddToCart = async (ProductObject) => {
     dispatch(addToCart(ProductObject));
-
-    // console.log(response);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.backButton}>
-        <AndroidBackButton route={Routes.CollectionScreen} />
+        <AndroidBackButton />
       </View>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.detailsContainer}>

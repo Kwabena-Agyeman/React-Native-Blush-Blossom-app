@@ -30,8 +30,13 @@ const HomeScreen = () => {
 
   const createChekout = useCallback(async () => {
     let checkout = await client.checkout.create();
-    // console.log(checkout);
-    dispatch(setCheckout({ id: checkout.id, lineItems: checkout.lineItems }));
+    dispatch(
+      setCheckout({
+        id: checkout.id,
+        lineItems: checkout.lineItems,
+        webUrl: checkout.webUrl,
+      })
+    );
   }, [dispatch]);
 
   useEffect(() => {

@@ -12,7 +12,9 @@ const AndroidBackButton = ({ route }) => {
         name="arrow-back"
         size={spacing.xxl}
         color="black"
-        onPress={() => navigation.navigate(route)}
+        onPress={
+          route ? () => navigation.navigate(route) : () => navigation.goBack()
+        }
       />
     </View>
   );

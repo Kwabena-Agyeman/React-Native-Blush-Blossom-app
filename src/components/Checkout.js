@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,31 +10,21 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { useDispatch, useSelector } from "react-redux";
-import { client } from "../shopify";
-import { toggleModal, setLineItems } from "../redux/slices/shopSlice";
+import { toggleModal } from "../redux/slices/shopSlice";
 import { AntDesign } from "@expo/vector-icons";
 import spacing from "../theme/spacing";
 import fonts from "../theme/fonts";
 import CheckoutItemCard from "./CheckoutItemCard";
+import CartEmptyHeading from "./CartEmptyHeading";
+import CheckoutTotalContainer from "./CheckoutTotalContainer";
 
 const Checkout = () => {
   const modalVisible = useSelector((state) => state.shop.modalVisible);
-  const checkoutId = useSelector((state) => state.shop.checkout.id);
+  // const checkoutId = useSelector((state) => state.shop.checkout.id);
   const cartItems = useSelector((state) => state.shop.checkout.LineItems);
   const dispatch = useDispatch();
 
-  const keyExtractor = useCallback((product) => product.id, []);
-
-  const fetchCheckout = useCallback(async () => {
-    let checkoutCart = await client.checkout.fetch(checkoutId);
-    dispatch(setLineItems(checkoutCart.lineItems));
-  }, [dispatch, checkoutId]);
-
-  useEffect(() => {
-    fetchCheckout();
-
-    return fetchCheckout;
-  }, [fetchCheckout]);
+  const keyExtractor = useCallback((product) => product.variantId, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -48,12 +38,16 @@ const Checkout = () => {
           <AntDesign name="close" size={34} color="black" />
         </TouchableHighlight>
       </View>
+      {!cartItems.length ? <CartEmptyHeading /> : null}
       <FlatList
         data={cartItems}
         keyExtractor={keyExtractor}
         renderItem={({ item }) => {
           return <CheckoutItemCard product={item} />;
         }}
+        ListFooterComponent={
+          cartItems.length ? <CheckoutTotalContainer /> : null
+        }
       />
     </SafeAreaView>
   );

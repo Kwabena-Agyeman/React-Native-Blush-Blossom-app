@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Image,
   StyleSheet,
@@ -6,46 +6,49 @@ import {
   View,
   TouchableHighlight,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import {
+  addToCart,
+  subtractFromCart,
+  clearItemFromCart,
+} from "../redux/slices/shopSlice";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import colors from "../theme/colors";
 
 const CheckoutItemCard = ({ product }) => {
-  const [quantityState, setQuantityState] = useState(product.quantity);
-  //   console.log("HEREE", product.product);
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View style={styles.ImageContainer}>
-        <Image
-          source={{ uri: product.variant.image.src }}
-          style={styles.image}
-        />
+        <Image source={{ uri: product.image }} style={styles.image} />
       </View>
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{product.title}</Text>
         <Text style={styles.currency}>
-          <Text>$</Text> {product.variant.price}
+          <Text>$</Text> {product.price * product.quantity}.00
         </Text>
         <View style={styles.bottomDetailsRow}>
           <View style={styles.quantityContainer}>
             <TouchableHighlight
               underlayColor={"rgba(255,255,255,1)"}
-              onPress={() => console.log("add")}
+              onPress={() => dispatch(addToCart(product))}
             >
               <Feather name="plus-square" size={28} color="black" />
             </TouchableHighlight>
-            <Text style={styles.quantity}>{quantityState}</Text>
+            <Text style={styles.quantity}>{product.quantity}</Text>
             <TouchableHighlight
               underlayColor={"rgba(255,255,255,1)"}
-              onPress={() => console.log("remove")}
+              onPress={() => dispatch(subtractFromCart(product))}
             >
               <Feather name="minus-square" size={28} color="black" />
             </TouchableHighlight>
           </View>
           <TouchableHighlight
             underlayColor={"rgba(255,255,255,1)"}
-            onPress={() => console.log("remove")}
+            onPress={() => dispatch(clearItemFromCart(product))}
           >
             <AntDesign name="close" size={20} color="gray" />
           </TouchableHighlight>
