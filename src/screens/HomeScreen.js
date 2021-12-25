@@ -39,19 +39,19 @@ const HomeScreen = () => {
     );
   }, [dispatch]);
 
-  const retriveCartFromAsyncStore = async () => {
+  const retriveCartFromAsyncStore = useCallback(async () => {
     let items = await getDataAsyncStorage();
-    await dispatch(setLineItems(items));
+    dispatch(setLineItems(items));
 
     // console.log("items", items);
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     createChekout();
 
     retriveCartFromAsyncStore();
     return createChekout;
-  }, [createChekout]);
+  }, [createChekout, retriveCartFromAsyncStore]);
 
   return (
     <ImageBackground

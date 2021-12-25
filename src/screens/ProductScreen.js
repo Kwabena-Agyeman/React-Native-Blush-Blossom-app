@@ -8,6 +8,7 @@ import fonts from "../theme/fonts";
 import colors from "../theme/colors";
 import spacing from "../theme/spacing";
 import AndroidBackButton from "../components/AndroidBackButton";
+import LottieButton from "../components/LottieButton";
 
 const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,17 @@ const ProductScreen = () => {
         <Text style={styles.currency}>
           $ <Text style={styles.price}>{parseInt(price, 10)}.00</Text>
         </Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
           onPress={() => AddToCart({ title, image, price, id })}
         >
           <Text style={styles.buttonText}>ADD TO CART</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => AddToCart({ title, image, price, id })}
+        >
+          <LottieButton />
         </TouchableOpacity>
       </View>
     </View>
