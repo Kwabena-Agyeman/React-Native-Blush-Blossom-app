@@ -3,6 +3,7 @@ import { addItemToCart, subtractItemFromCart } from "./cartUtility";
 import { storeDataAsyncStorage } from "../../asyncStorage";
 const initialState = {
   modalVisible: false,
+  isAuthenticated: false,
   favorites: [],
   cart: [],
   checkout: {
@@ -64,6 +65,9 @@ export const shopSlice = createSlice({
     toggleModal: (state, action) => {
       state.modalVisible = action.payload;
     },
+    setAuthentication: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
   },
 });
 
@@ -76,6 +80,7 @@ export const {
   setCheckout,
   setLineItems,
   toggleModal,
+  setAuthentication,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;
