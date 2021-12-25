@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-import { setCheckout } from "../redux/slices/shopSlice";
+import { setCheckout, setLineItems } from "../redux/slices/shopSlice";
+import { getDataAsyncStorage } from "../asyncStorage";
 
 import { client } from "../shopify";
 import fonts from "../theme/fonts";
@@ -33,15 +34,22 @@ const HomeScreen = () => {
     dispatch(
       setCheckout({
         id: checkout.id,
-        lineItems: checkout.lineItems,
         webUrl: checkout.webUrl,
       })
     );
   }, [dispatch]);
 
+  const retriveCartFromAsyncStore = async () => {
+    let items = await getDataAsyncStorage();
+    await dispatch(setLineItems(items));
+
+    // console.log("items", items);
+  };
+
   useEffect(() => {
     createChekout();
 
+    retriveCartFromAsyncStore();
     return createChekout;
   }, [createChekout]);
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setLineItems } from "../redux/slices/shopSlice";
+import { storeDataAsyncStorage } from "../asyncStorage";
 import fonts from "../theme/fonts";
 import * as WebBrowser from "expo-web-browser";
 
@@ -12,6 +14,7 @@ const CheckoutTotalContainer = () => {
   const cartItems = useSelector((state) => state.shop.checkout.LineItems);
   const checkoutId = useSelector((state) => state.shop.checkout.id);
   const webUrl = useSelector((state) => state.shop.checkout.webUrl);
+  const dispatch = useDispatch();
 
   let total = 0;
   cartItems.map((item) => {
@@ -19,6 +22,12 @@ const CheckoutTotalContainer = () => {
 
     return (total = total + itemTotal);
   });
+
+  const ResetCart = () => {
+    storeDataAsyncStorage([]);
+
+    dispatch(setLineItems([]));
+  };
 
   const processCheckout = async () => {
     let LineItems = [];
@@ -28,7 +37,7 @@ const CheckoutTotalContainer = () => {
         quantity: item.quantity,
       });
     });
-    console.log(LineItems);
+    // console.log(LineItems);
 
     await client.checkout.addLineItems(checkoutId, LineItems);
 
@@ -47,6 +56,12 @@ const CheckoutTotalContainer = () => {
           onPress={() => processCheckout()}
         >
           <Text style={styles.buttonText}>CHECKOUT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.clearCartButton}
+          onPress={() => ResetCart()}
+        >
+          <Text style={styles.clearCartText}>CLEAR CART</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -75,6 +90,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: spacing.md3,
     width: "50%",
+  },
+  clearCartButton: {
+    marginBottom: spacing.lg3,
+    marginTop: spacing.lg3,
+  },
+  clearCartText: {
+    color: colors.brand.primary,
   },
   container: {
     flexDirection: "row",
