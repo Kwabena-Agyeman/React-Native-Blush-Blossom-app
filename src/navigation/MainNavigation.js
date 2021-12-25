@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAuthentication } from "../redux/slices/shopSlice";
 
 import AppNavigation from "./AppNavigation";
+import AuthScreen from "../screens/AuthScreen";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
@@ -25,14 +26,10 @@ const MainNavigation = () => {
     }
   });
 
-  if (isAuthenticated) {
-    return <AppNavigation />;
+  if (!isAuthenticated) {
+    return <AuthScreen />;
   } else {
-    return (
-      <View>
-        <Text>Hello</Text>
-      </View>
-    );
+    return <AppNavigation />;
   }
 };
 
