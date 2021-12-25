@@ -7,11 +7,15 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Routes from "../navigation/Routes";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
 import spacing from "../theme/spacing";
 
 const AuthScreen = () => {
+  const navigation = useNavigation();
+  console.log(navigation);
   return (
     <ImageBackground
       source={require("../../assets/v934-nunny-wallpaper-09-x.jpg")}
@@ -33,7 +37,7 @@ const AuthScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button}
-          //   onPress={() => ResetCart()}
+          onPress={() => navigation.navigate(Routes.RegisterScreen)}
         >
           <Text style={styles.ButtonText}>SIGN UP</Text>
         </TouchableOpacity>

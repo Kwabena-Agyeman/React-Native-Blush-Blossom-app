@@ -1,14 +1,18 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { LogBox } from "react-native";
 import { onAuthStateChanged } from "firebase/auth";
+
 import { auth } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthentication } from "../redux/slices/shopSlice";
 
 import AppNavigation from "./AppNavigation";
-import AuthScreen from "../screens/AuthScreen";
+import AuthNavigation from "./AuthNavigation";
 
 const MainNavigation = () => {
+  LogBox.ignoreLogs([
+    "Warning: Async Storage has been extracted from react-native core",
+  ]);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.shop.isAuthenticated);
 
@@ -27,10 +31,16 @@ const MainNavigation = () => {
   });
 
   if (!isAuthenticated) {
-    return <AuthScreen />;
+    return <AuthNavigation />;
   } else {
     return <AppNavigation />;
   }
+
+  // return (
+  //   <NavigationContainer theme={navTheme}>
+  //     {!isAuthenticated ? <AuthScreen /> : <AppNavigation />}
+  //   </NavigationContainer>
+  // );
 };
 
 export default MainNavigation;

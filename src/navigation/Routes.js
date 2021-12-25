@@ -6,4 +6,5 @@ export default Object.freeze({
   CollectionProductsScreen: "CollectionProductsScreen",
   ProductScreen: "ProductScreen",
   AuthScreen: "AuthScreen",
+  RegisterScreen: "RegisterScreen",
 });
