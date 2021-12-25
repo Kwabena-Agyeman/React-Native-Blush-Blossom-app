@@ -1,8 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/slices/shopSlice";
 
 import fonts from "../theme/fonts";
 import colors from "../theme/colors";
@@ -11,13 +9,9 @@ import AndroidBackButton from "../components/AndroidBackButton";
 import LottieButton from "../components/LottieButton";
 
 const ProductScreen = () => {
-  const dispatch = useDispatch();
   const route = useRoute();
-  const { title, image, price, id } = route.params.params;
 
-  const AddToCart = async (ProductObject) => {
-    dispatch(addToCart(ProductObject));
-  };
+  const { title, image, price, id } = route.params.params;
 
   return (
     <View style={styles.container}>
@@ -36,12 +30,7 @@ const ProductScreen = () => {
         >
           <Text style={styles.buttonText}>ADD TO CART</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => AddToCart({ title, image, price, id })}
-        >
-          <LottieButton />
-        </TouchableOpacity>
+        <LottieButton product={{ title, image, price, id }} />
       </View>
     </View>
   );
@@ -65,7 +54,10 @@ const styles = StyleSheet.create({
     color: colors.bg.primary,
   },
   container: {
+    alignContent: "center",
+    alignItems: "center",
     flex: 1,
+    justifyContent: "flex-end",
   },
   currency: {
     color: colors.brand.primary,
@@ -75,7 +67,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     alignItems: "center",
     height: "20%",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
   },
   image: {
     height: "80%",
