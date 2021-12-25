@@ -32,14 +32,15 @@ const styles = StyleSheet.create({
     elevation: 24,
     height: 40,
     justifyContent: "center",
+    marginHorizontal: spacing.md3,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 12,
     },
     shadowOpacity: 0.58,
-    shadowRadius: 16.0,
 
+    shadowRadius: 16.0,
     width: 40,
   },
 });
