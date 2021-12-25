@@ -15,6 +15,7 @@ const AppNavigation = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName={Routes.HomeScreen}
     >
       <Tab.Screen
         name={Routes.HomeScreen}

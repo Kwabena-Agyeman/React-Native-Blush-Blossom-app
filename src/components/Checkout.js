@@ -24,7 +24,7 @@ const Checkout = () => {
   const cartItems = useSelector((state) => state.shop.checkout.LineItems);
   const dispatch = useDispatch();
 
-  const keyExtractor = useCallback((product) => product.variantId, []);
+  const keyExtractor = useCallback((product) => product.id, []);
 
   return (
     <SafeAreaView style={styles.container}>

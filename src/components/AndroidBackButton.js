@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import spacing from "../theme/spacing";
 
 const AndroidBackButton = ({ route }) => {
+  // console.log("ROUTE", route);
   const navigation = useNavigation();
   return (
     <View style={styles.buttonContainer}>
@@ -15,6 +16,7 @@ const AndroidBackButton = ({ route }) => {
         onPress={
           route ? () => navigation.navigate(route) : () => navigation.goBack()
         }
+        // onPress={() => navigation.navigate(route)}
       />
     </View>
   );

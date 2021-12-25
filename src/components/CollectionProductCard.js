@@ -21,7 +21,7 @@ const CollectionProductCard = ({ product }) => {
             title: product.title,
             price: product.variants[0].price,
             image: product.images[0].src,
-            variantId: product.variants[0].id,
+            id: product.variants[0].id,
           },
         })
       }

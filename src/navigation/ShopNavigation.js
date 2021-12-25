@@ -15,6 +15,7 @@ const ShopNavigation = () => {
         presentation: "card",
         gestureEnabled: true,
       }}
+      initialRouteName={Routes.CollectionScreen}
     >
       <Stack.Screen
         name={Routes.CollectionScreen}

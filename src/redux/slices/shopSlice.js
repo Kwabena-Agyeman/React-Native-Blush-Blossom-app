@@ -31,7 +31,7 @@ export const shopSlice = createSlice({
     clearItemFromCart: (state, action) => {
       let oldCartItems = state.checkout.LineItems;
       let newCartItems = oldCartItems.filter((item) => {
-        return item.variantId !== action.payload.variantId;
+        return item.id !== action.payload.id;
       });
 
       state.checkout.LineItems = newCartItems;

@@ -4,7 +4,6 @@ import { useRoute } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/shopSlice";
 
-import Routes from "../navigation/Routes";
 import fonts from "../theme/fonts";
 import colors from "../theme/colors";
 import spacing from "../theme/spacing";
@@ -13,7 +12,7 @@ import AndroidBackButton from "../components/AndroidBackButton";
 const ProductScreen = () => {
   const dispatch = useDispatch();
   const route = useRoute();
-  const { title, image, price, variantId } = route.params.params;
+  const { title, image, price, id } = route.params.params;
 
   const AddToCart = async (ProductObject) => {
     dispatch(addToCart(ProductObject));
@@ -32,7 +31,7 @@ const ProductScreen = () => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => AddToCart({ title, image, price, variantId })}
+          onPress={() => AddToCart({ title, image, price, id })}
         >
           <Text style={styles.buttonText}>ADD TO CART</Text>
         </TouchableOpacity>

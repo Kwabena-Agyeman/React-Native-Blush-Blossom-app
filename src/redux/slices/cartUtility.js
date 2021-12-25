@@ -1,11 +1,11 @@
 export const addItemToCart = (cartItems, cartItemBeingAdded) => {
   const existingCartItem = cartItems.find((cartItem) => {
-    return cartItem.variantId === cartItemBeingAdded.variantId;
+    return cartItem.id === cartItemBeingAdded.id;
   });
 
   if (existingCartItem) {
     return cartItems.map((cartItem) => {
-      if (cartItem.variantId === cartItemBeingAdded.variantId) {
+      if (cartItem.id === cartItemBeingAdded.id) {
         return {
           ...cartItem,
           quantity: cartItem.quantity + 1,
@@ -20,17 +20,17 @@ export const addItemToCart = (cartItems, cartItemBeingAdded) => {
 
 export const subtractItemFromCart = (cartItems, cartItemToRemove) => {
   const existingCartItem = cartItems.find((cartItem) => {
-    return cartItem.variantId === cartItemToRemove.variantId;
+    return cartItem.id === cartItemToRemove.id;
   });
 
   if (existingCartItem.quantity === 1) {
     return cartItems.filter((cartItem) => {
-      return cartItem.variantId !== cartItemToRemove.variantId;
+      return cartItem.id !== cartItemToRemove.id;
     });
   }
 
   return cartItems.map((cartItem) => {
-    if (cartItem.variantId === cartItemToRemove.variantId) {
+    if (cartItem.id === cartItemToRemove.id) {
       return { ...cartItem, quantity: cartItem.quantity - 1 };
     } else {
       return cartItem;
