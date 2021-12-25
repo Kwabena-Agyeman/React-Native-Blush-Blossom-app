@@ -26,6 +26,20 @@ export default AndroidBackButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    paddingHorizontal: spacing.lg,
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.5)",
+    borderRadius: 20,
+    elevation: 24,
+    height: 40,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+
+    width: 40,
   },
 });
