@@ -47,12 +47,8 @@ const ResetPasswordScreen = () => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           try {
-            console.log(values);
-            console.log("email to be sent");
-
             await sendPasswordResetEmail(auth, values.email);
             await confirmPasswordReset(auth, "TEST");
-            console.log("email sent");
           } catch (error) {
             // const FBerrorCode = error.code;
             const FBerrorMessage = error.message;

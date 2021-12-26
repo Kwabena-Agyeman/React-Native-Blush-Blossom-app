@@ -48,7 +48,6 @@ const HomeScreen = () => {
 
   useEffect(() => {
     createChekout();
-
     retriveCartFromAsyncStore();
     return createChekout;
   }, [createChekout, retriveCartFromAsyncStore]);

@@ -58,12 +58,12 @@ const LoginScreen = () => {
               values.email,
               values.password
             );
-            console.log(user);
+            // console.log(user);
           } catch (error) {
             const FBerrorCode = error.code;
             const FBerrorMessage = error.message;
-            console.log("ErrorCode", FBerrorCode);
-            console.log("ErrorMessage", FBerrorMessage);
+            // console.log("ErrorCode", FBerrorCode);
+            // console.log("ErrorMessage", FBerrorMessage);
             setErrorMessage("Login credentials are incorrect");
           }
         }}

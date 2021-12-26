@@ -19,7 +19,8 @@ const MainNavigation = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       dispatch(setAuthentication(true));
-      dispatch(setUser({ uid: user.uid, email: user.email }));
+      // dispatch(setUser({ uid: user.uid, email: user.email }));
+      console.log("User signed in");
       // console.log(user);
       // const uid = user.uid;
       // console.log(
@@ -28,6 +29,7 @@ const MainNavigation = () => {
       // );
     } else {
       dispatch(setAuthentication(false));
+      // dispatch(setUser({}));
       console.log("User is signed out");
     }
   });

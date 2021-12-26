@@ -59,7 +59,7 @@ const RegisterScreen = () => {
           try {
             // console.log(values);
 
-            const user = await createUserWithEmailAndPassword(
+            await createUserWithEmailAndPassword(
               auth,
               values.email,
               values.password
