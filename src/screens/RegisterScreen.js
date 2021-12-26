@@ -4,18 +4,20 @@ import React from "react";
 import {
   StyleSheet,
   TextInput,
-  Button,
   Text,
   SafeAreaView,
   Platform,
   View,
   TouchableHighlight,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import spacing from "../theme/spacing";
-import { Feather } from "@expo/vector-icons";
 import colors from "../theme/colors";
 
 // import AppScreen from "../components/AppScreen";
@@ -44,8 +46,12 @@ const RegisterScreen = () => {
           confirmPassword: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          try {
+            console.log(values);
+
+            createUserWithEmailAndPassword(auth, values.email, values.password);
+          } catch (error) {}
         }}
       >
         {({ handleChange, handleSubmit, touched, errors, setFieldTouched }) => {
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
   },
   ErrorMessage: {
     color: colors.text.error,
-    margin: spacing.md,
+    margin: spacing.sm,
   },
   SubmitButton: {
     backgroundColor: colors.brand.primary,

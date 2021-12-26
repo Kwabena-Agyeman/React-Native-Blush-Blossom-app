@@ -19,11 +19,12 @@ const MainNavigation = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       dispatch(setAuthentication(true));
-      const uid = user.uid;
-      console.log(
-        "User is signed in, see docs for a list of available properties https://firebase.google.com/docs/reference/js/firebase.User",
-        uid
-      );
+      console.log(user);
+      // const uid = user.uid;
+      // console.log(
+      //   "User is signed in, see docs for a list of available properties https://firebase.google.com/docs/reference/js/firebase.User",
+      //   uid
+      // );
     } else {
       dispatch(setAuthentication(false));
       console.log("User is signed out");
