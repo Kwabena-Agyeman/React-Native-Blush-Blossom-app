@@ -3,73 +3,126 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
-  View,
   TextInput,
   Button,
+  Text,
   SafeAreaView,
   Platform,
+  View,
+  TouchableHighlight,
 } from "react-native";
 import Constants from "expo-constants";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import spacing from "../theme/spacing";
+import { Feather } from "@expo/vector-icons";
+import colors from "../theme/colors";
 
 // import AppScreen from "../components/AppScreen";
 // import AppTextInput from "../components/AppTextInput";
 // import AppButton from "../components/AppButton";
-// import ErrorMessage from "../components/ErrorMessage";
+// import Text from "../components/Text";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().max(10).min(4).label("Name"),
   email: Yup.string().email().required().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
+  confirmPassword: Yup.string()
+    .required()
+    .label("Confirm Password")
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 const RegisterScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Formik
-        initialValues={{ name: "", email: "", password: "" }}
+        initialValues={{
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
       >
         {({ handleChange, handleSubmit, touched, errors, setFieldTouched }) => {
           return (
             <>
-              <TextInput
-                icon="account"
-                placeholder="Name"
-                autoCapitalize="none"
-                autoCorrect={false}
-                onBlur={() => setFieldTouched("name")}
-                onChangeText={handleChange("name")}
-                style={styles.TextInput}
-              />
-              {/* {touched.email && <ErrorMessage error={errors.name} />} */}
+              <View style={styles.TextInputContainer}>
+                <Feather name="user" size={24} color={colors.ui.secondary} />
+                <TextInput
+                  placeholder="Name"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  onBlur={() => setFieldTouched("name")}
+                  onChangeText={handleChange("name")}
+                  style={styles.TextInput}
+                />
+              </View>
+              {touched.name && (
+                <Text style={styles.ErrorMessage}>{errors.name}</Text>
+              )}
+              <View style={styles.TextInputContainer}>
+                <Feather name="mail" size={24} color={colors.ui.secondary} />
 
-              <TextInput
-                icon="email"
-                placeholder="Email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                onBlur={() => setFieldTouched("email")}
-                onChangeText={handleChange("email")}
-              />
-              {/* {touched.email && <ErrorMessage error={errors.email} />} */}
+                <TextInput
+                  placeholder="Email"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  onBlur={() => setFieldTouched("email")}
+                  onChangeText={handleChange("email")}
+                  style={styles.TextInput}
+                />
+              </View>
+              {touched.email && (
+                <Text style={styles.ErrorMessage}>{errors.email}</Text>
+              )}
 
-              <TextInput
-                icon="lock"
-                placeholder="Password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry
-                onBlur={() => setFieldTouched("password")}
-                onChangeText={handleChange("password")}
-              />
-              {/* {touched.email && <ErrorMessage error={errors.password} />} */}
+              <View style={styles.TextInputContainer}>
+                <Feather name="lock" size={24} color={colors.ui.secondary} />
+                <TextInput
+                  placeholder="Password"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry
+                  onBlur={() => setFieldTouched("password")}
+                  onChangeText={handleChange("password")}
+                  style={styles.TextInput}
+                />
+              </View>
+              {touched.password && (
+                <Text style={styles.ErrorMessage}>{errors.password}</Text>
+              )}
 
-              <Button title="Register" onPress={handleSubmit} />
+              <View style={styles.TextInputContainer}>
+                <Feather name="lock" size={24} color={colors.ui.secondary} />
+                <TextInput
+                  icon="lock"
+                  placeholder="Re-enter Password"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry
+                  onBlur={() => setFieldTouched("confirmPassword")}
+                  onChangeText={handleChange("confirmPassword")}
+                  style={styles.TextInput}
+                />
+              </View>
+              {touched.confirmPassword && (
+                <Text style={styles.ErrorMessage}>
+                  {errors.confirmPassword}
+                </Text>
+              )}
+
+              <TouchableHighlight
+                title="Register"
+                onPress={handleSubmit}
+                style={styles.SubmitButton}
+              >
+                <Text style={styles.ButtonText}>Register</Text>
+              </TouchableHighlight>
             </>
           );
         }}
@@ -81,12 +134,41 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
+  ButtonText: {
+    color: colors.text.inverse,
+  },
+  ErrorMessage: {
+    color: colors.text.error,
+    margin: spacing.md,
+  },
+  SubmitButton: {
+    backgroundColor: colors.brand.primary,
+    borderRadius: spacing.sm,
+    marginTop: spacing.xxl,
+    padding: spacing.md3,
+  },
   TextInput: {
-    padding: spacing.lg3,
+    // backgroundColor: "red",
+    borderBottomWidth: 1,
+    borderColor: colors.ui.secondary,
+    flex: 1,
+    marginLeft: spacing.md3,
+    padding: spacing.md3,
+  },
+  TextInputContainer: {
+    // backgroundColor: "red",
+    alignItems: "center",
+    // backgroundColor: "yellow",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    paddingHorizontal: spacing.lg3,
   },
   container: {
+    // alignItems: "center",
+    alignItems: "center",
     flex: 1,
-    padding: 10,
+    justifyContent: "center",
+    padding: spacing.md,
     paddingTop: Platform.OS === "android" ? Constants.statusBarHeight : null,
   },
 });
