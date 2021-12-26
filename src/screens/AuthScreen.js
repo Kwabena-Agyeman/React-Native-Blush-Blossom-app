@@ -15,7 +15,7 @@ import spacing from "../theme/spacing";
 
 const AuthScreen = () => {
   const navigation = useNavigation();
-  console.log(navigation);
+  // console.log(navigation);
   return (
     <ImageBackground
       source={require("../../assets/v934-nunny-wallpaper-09-x.jpg")}

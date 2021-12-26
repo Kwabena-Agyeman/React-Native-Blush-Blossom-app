@@ -48,7 +48,7 @@ const RegisterScreen = () => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           try {
-            console.log(values);
+            // console.log(values);
 
             createUserWithEmailAndPassword(auth, values.email, values.password);
           } catch (error) {}

@@ -6,6 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import ShopNavigation from "./ShopNavigation";
 import Routes from "./Routes";
+import AccountScreen from "../screens/AccountScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +40,7 @@ const AppNavigation = () => {
       />
       <Tab.Screen
         name={Routes.AccountScreen}
-        component={HomeScreen}
+        component={AccountScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person-outline" size={size} color={color} />

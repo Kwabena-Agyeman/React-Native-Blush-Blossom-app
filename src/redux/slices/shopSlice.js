@@ -4,6 +4,7 @@ import { storeDataAsyncStorage } from "../../asyncStorage";
 const initialState = {
   modalVisible: false,
   isAuthenticated: false,
+  user: {},
   favorites: [],
   cart: [],
   checkout: {
@@ -68,6 +69,9 @@ export const shopSlice = createSlice({
     setAuthentication: (state, action) => {
       state.isAuthenticated = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
@@ -81,6 +85,7 @@ export const {
   setLineItems,
   toggleModal,
   setAuthentication,
+  setUser,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

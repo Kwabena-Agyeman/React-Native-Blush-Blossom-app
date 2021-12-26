@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { setAuthentication } from "../redux/slices/shopSlice";
+import { setAuthentication, setUser } from "../redux/slices/shopSlice";
 
 import AppNavigation from "./AppNavigation";
 import AuthNavigation from "./AuthNavigation";
@@ -19,7 +19,8 @@ const MainNavigation = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       dispatch(setAuthentication(true));
-      console.log(user);
+      dispatch(setUser({ uid: user.uid, email: user.email }));
+      // console.log(user);
       // const uid = user.uid;
       // console.log(
       //   "User is signed in, see docs for a list of available properties https://firebase.google.com/docs/reference/js/firebase.User",
