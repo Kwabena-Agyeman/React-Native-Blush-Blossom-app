@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -15,28 +15,22 @@ import Constants from "expo-constants";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 import spacing from "../theme/spacing";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
 
-// import AppScreen from "../components/AppScreen";
-// import AppTextInput from "../components/AppTextInput";
-// import AppButton from "../components/AppButton";
-// import Text from "../components/Text";
-
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().max(10).min(4).label("Name"),
   email: Yup.string().email().required().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
-  confirmPassword: Yup.string()
-    .required()
-    .label("Confirm Password")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
-const RegisterScreen = () => {
+const LoginScreen = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   return (
     <SafeAreaView style={styles.container}>
       <Text
@@ -45,7 +39,7 @@ const RegisterScreen = () => {
           fontFamily: fonts.fonts.heading,
         }}
       >
-        Register
+        Login
       </Text>
       <Formik
         initialValues={{
@@ -59,31 +53,24 @@ const RegisterScreen = () => {
           try {
             // console.log(values);
 
-            const user = await createUserWithEmailAndPassword(
+            const user = await signInWithEmailAndPassword(
               auth,
               values.email,
               values.password
             );
-          } catch (error) {}
+            console.log(user);
+          } catch (error) {
+            const FBerrorCode = error.code;
+            const FBerrorMessage = error.message;
+            console.log("ErrorCode", FBerrorCode);
+            console.log("ErrorMessage", FBerrorMessage);
+            setErrorMessage("Login credentials are incorrect");
+          }
         }}
       >
         {({ handleChange, handleSubmit, touched, errors, setFieldTouched }) => {
           return (
             <>
-              <View style={styles.TextInputContainer}>
-                <Feather name="user" size={24} color={colors.ui.secondary} />
-                <TextInput
-                  placeholder="Name"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  onBlur={() => setFieldTouched("name")}
-                  onChangeText={handleChange("name")}
-                  style={styles.TextInput}
-                />
-              </View>
-              {touched.name && (
-                <Text style={styles.ErrorMessage}>{errors.name}</Text>
-              )}
               <View style={styles.TextInputContainer}>
                 <Feather name="mail" size={24} color={colors.ui.secondary} />
 
@@ -116,31 +103,21 @@ const RegisterScreen = () => {
                 <Text style={styles.ErrorMessage}>{errors.password}</Text>
               )}
 
-              <View style={styles.TextInputContainer}>
-                <Feather name="lock" size={24} color={colors.ui.secondary} />
-                <TextInput
-                  icon="lock"
-                  placeholder="Re-enter Password"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry
-                  onBlur={() => setFieldTouched("confirmPassword")}
-                  onChangeText={handleChange("confirmPassword")}
-                  style={styles.TextInput}
-                />
-              </View>
-              {touched.confirmPassword && (
-                <Text style={styles.ErrorMessage}>
-                  {errors.confirmPassword}
-                </Text>
-              )}
+              <Text style={styles.ErrorMessage}>{errorMessage}</Text>
 
               <TouchableHighlight
                 title="Register"
                 onPress={handleSubmit}
                 style={styles.SubmitButton}
               >
-                <Text style={styles.ButtonText}>Register</Text>
+                <Text style={styles.ButtonText}>Login</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                title="Register"
+                onPress={handleSubmit}
+                style={styles.ResetEmailButton}
+              >
+                <Text style={styles.ResetEmailText}>Forgot your password?</Text>
               </TouchableHighlight>
             </>
           );
@@ -150,7 +127,7 @@ const RegisterScreen = () => {
   );
 };
 
-export default RegisterScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   ButtonText: {
@@ -159,6 +136,17 @@ const styles = StyleSheet.create({
   ErrorMessage: {
     color: colors.text.error,
     margin: spacing.sm,
+  },
+  ResetEmailButton: {
+    // backgroundColor: colors.brand.primary,
+    borderRadius: spacing.sm,
+    marginTop: spacing.lg3,
+    padding: spacing.lg3,
+  },
+  ResetEmailText: {
+    color: colors.brand.primary,
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
   },
   SubmitButton: {
     backgroundColor: colors.brand.primary,

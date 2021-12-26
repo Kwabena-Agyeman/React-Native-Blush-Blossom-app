@@ -31,7 +31,7 @@ const AuthScreen = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.Button}
-          //   onPress={() => ResetCart()}
+          onPress={() => navigation.navigate(Routes.LoginScreen)}
         >
           <Text style={styles.ButtonText}>LOGIN</Text>
         </TouchableOpacity>

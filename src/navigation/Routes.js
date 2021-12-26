@@ -7,4 +7,5 @@ export default Object.freeze({
   ProductScreen: "ProductScreen",
   AuthScreen: "AuthScreen",
   RegisterScreen: "RegisterScreen",
+  LoginScreen: "LoginScreen",
 });

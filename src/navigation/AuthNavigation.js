@@ -4,6 +4,7 @@ import AuthScreen from "../screens/AuthScreen";
 
 import Routes from "./Routes";
 import RegisterScreen from "../screens/RegisterScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const AuthNavigation = () => {
     >
       <Stack.Screen name={Routes.AuthScreen} component={AuthScreen} />
       <Stack.Screen name={Routes.RegisterScreen} component={RegisterScreen} />
+      <Stack.Screen name={Routes.LoginScreen} component={LoginScreen} />
     </Stack.Navigator>
   );
 };
