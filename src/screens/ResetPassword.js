@@ -12,25 +12,21 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Constants from "expo-constants";
-import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail, confirmPasswordReset } from "firebase/auth";
 
 import spacing from "../theme/spacing";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";
-import Routes from "../navigation/Routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string().required().min(4).label("Password"),
 });
 
-const LoginScreen = () => {
+const ResetPasswordScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <Text
@@ -39,7 +35,7 @@ const LoginScreen = () => {
           fontFamily: fonts.fonts.heading,
         }}
       >
-        Login
+        Reset Password
       </Text>
       <Formik
         initialValues={{
@@ -51,20 +47,16 @@ const LoginScreen = () => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           try {
-            // console.log(values);
+            console.log(values);
+            console.log("email to be sent");
 
-            const user = await signInWithEmailAndPassword(
-              auth,
-              values.email,
-              values.password
-            );
-            console.log(user);
+            await sendPasswordResetEmail(auth, values.email);
+            await confirmPasswordReset(auth, "TEST");
+            console.log("email sent");
           } catch (error) {
-            const FBerrorCode = error.code;
+            // const FBerrorCode = error.code;
             const FBerrorMessage = error.message;
-            console.log("ErrorCode", FBerrorCode);
-            console.log("ErrorMessage", FBerrorMessage);
-            setErrorMessage("Login credentials are incorrect");
+            setErrorMessage(FBerrorMessage);
           }
         }}
       >
@@ -87,22 +79,6 @@ const LoginScreen = () => {
                 <Text style={styles.ErrorMessage}>{errors.email}</Text>
               )}
 
-              <View style={styles.TextInputContainer}>
-                <Feather name="lock" size={24} color={colors.ui.secondary} />
-                <TextInput
-                  placeholder="Password"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry
-                  onBlur={() => setFieldTouched("password")}
-                  onChangeText={handleChange("password")}
-                  style={styles.TextInput}
-                />
-              </View>
-              {touched.password && (
-                <Text style={styles.ErrorMessage}>{errors.password}</Text>
-              )}
-
               <Text style={styles.ErrorMessage}>{errorMessage}</Text>
 
               <TouchableHighlight
@@ -110,14 +86,7 @@ const LoginScreen = () => {
                 onPress={handleSubmit}
                 style={styles.SubmitButton}
               >
-                <Text style={styles.ButtonText}>Login</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                title="Register"
-                onPress={() => navigation.navigate(Routes.ResetPasswordScreen)}
-                style={styles.ResetEmailButton}
-              >
-                <Text style={styles.ResetEmailText}>Forgot your password?</Text>
+                <Text style={styles.ButtonText}>Reset password</Text>
               </TouchableHighlight>
             </>
           );
@@ -127,7 +96,7 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default ResetPasswordScreen;
 
 const styles = StyleSheet.create({
   ButtonText: {

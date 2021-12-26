@@ -8,4 +8,5 @@ export default Object.freeze({
   AuthScreen: "AuthScreen",
   RegisterScreen: "RegisterScreen",
   LoginScreen: "LoginScreen",
+  ResetPasswordScreen: "ResetPasswordScreen",
 });
