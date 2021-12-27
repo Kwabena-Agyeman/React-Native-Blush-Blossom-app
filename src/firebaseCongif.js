@@ -1,6 +1,6 @@
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration, Fing configuration in Google Firebase Console
 
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyDiAMfux2P830xh04oHE1Hza_wywOKxA78",
   authDomain: "potent-plasma-333913.firebaseapp.com",
   projectId: "potent-plasma-333913",
@@ -8,3 +8,5 @@ export const firebaseConfig = {
   messagingSenderId: "289849022705",
   appId: "1:289849022705:web:c05e38ab6501d042ea3150",
 };
+
+export default firebaseConfig;
