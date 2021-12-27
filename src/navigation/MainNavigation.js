@@ -42,12 +42,12 @@ const MainNavigation = () => {
     } else {
       dispatch(setAuthentication(false));
       dispatch(setUser({}));
-      // dispatch(
-      //   setCheckout({
-      //     id: "",
-      //     webUrl: "",
-      //   })
-      // );
+      dispatch(
+        setCheckout({
+          id: "",
+          webUrl: "",
+        })
+      );
       console.log("User is signed out");
       setAppReady(true);
     }

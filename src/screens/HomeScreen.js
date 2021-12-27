@@ -31,6 +31,7 @@ const HomeScreen = () => {
 
   const createChekout = useCallback(async () => {
     let checkout = await client.checkout.create();
+    console.log("checkout created");
     dispatch(
       setCheckout({
         id: checkout.id,
@@ -49,7 +50,11 @@ const HomeScreen = () => {
   useEffect(() => {
     createChekout();
     retriveCartFromAsyncStore();
-    return createChekout;
+
+    return () => {
+      createChekout;
+      retriveCartFromAsyncStore;
+    };
   }, [createChekout, retriveCartFromAsyncStore]);
 
   return (
