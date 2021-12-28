@@ -33,9 +33,9 @@ const CollectionScreen = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = fetchAllCollections();
+    fetchAllCollections();
 
-    return () => unsubscribe();
+    return () => fetchAllCollections();
   }, []);
 
   return (

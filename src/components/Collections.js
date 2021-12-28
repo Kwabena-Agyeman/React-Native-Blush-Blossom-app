@@ -20,9 +20,9 @@ const Collections = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = fetchAllCollections();
+    fetchAllCollections();
 
-    return () => unsubscribe();
+    return () => fetchAllCollections();
   }, []);
   return (
     <View style={styles.container}>
