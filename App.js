@@ -8,12 +8,10 @@ import { LogBox } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-import MainNavigation from "./src/navigation/MainNavigation";
+import MainNavigation from "./src/navigation/AppEntryNavigation";
 import navTheme from "./src/navigation/NavigationTheme";
 
-LogBox.ignoreLogs([
-  "Warning: Async Storage has been extracted from react-native core",
-]);
+LogBox.ignoreAllLogs();
 
 export default function App() {
   return (

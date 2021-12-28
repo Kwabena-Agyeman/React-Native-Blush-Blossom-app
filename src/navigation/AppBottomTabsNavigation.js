@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ShopNavigation from "./ShopNavigation";
 import Routes from "./Routes";
 import AccountScreen from "../screens/AccountScreen";
+import HomeScreenNavigation from "./HomeScreenNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +20,8 @@ const AppNavigation = () => {
       initialRouteName={Routes.HomeScreen}
     >
       <Tab.Screen
-        name={Routes.HomeScreen}
-        component={HomeScreen}
+        name={Routes.HomeNavigation}
+        component={HomeScreenNavigation}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="ios-home-outline" size={size} color={color} />

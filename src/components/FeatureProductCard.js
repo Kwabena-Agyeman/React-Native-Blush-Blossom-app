@@ -16,8 +16,8 @@ const FeatureProductCard = ({ product }) => {
       <TouchableOpacity
         style={styles.container}
         onPress={() => {
-          navigation.navigate(Routes.ShopScreen, {
-            screen: Routes.ProductScreen,
+          navigation.navigate(Routes.HomeNavigation, {
+            screen: Routes.HomeProductScreen,
             params: {
               params: {
                 title: product.title,

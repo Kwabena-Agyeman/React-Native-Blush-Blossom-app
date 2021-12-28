@@ -12,7 +12,7 @@ import {
   setCheckout,
 } from "../redux/slices/shopSlice";
 
-import AppNavigation from "./AppNavigation";
+import AppNavigation from "./AppBottomTabsNavigation";
 import AuthNavigation from "./AuthNavigation";
 
 import { Marcellus_400Regular } from "@expo-google-fonts/marcellus";

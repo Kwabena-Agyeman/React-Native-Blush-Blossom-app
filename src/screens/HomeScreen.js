@@ -31,7 +31,7 @@ const HomeScreen = () => {
 
   const createChekout = useCallback(async () => {
     let checkout = await client.checkout.create();
-    console.log("checkout created");
+    // console.log("checkout created");
     dispatch(
       setCheckout({
         id: checkout.id,
