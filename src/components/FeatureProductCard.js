@@ -22,7 +22,7 @@ const FeatureProductCard = ({ product }) => {
               params: {
                 title: product.title,
                 image: product.images[0].src,
-                price: product.variants[0].price,
+                price: product.variants[0].price.amount,
                 id: product.variants[0].id,
               },
             },
@@ -36,7 +36,7 @@ const FeatureProductCard = ({ product }) => {
             {product.title}
           </Text>
           <Text style={styles.priceText}>
-            ${parseInt(product.variants[0].price, 10)}
+            ${parseInt(product.variants[0].price.amount, 10)}
           </Text>
         </View>
       </TouchableOpacity>

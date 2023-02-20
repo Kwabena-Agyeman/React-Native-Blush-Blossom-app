@@ -11,6 +11,7 @@ const FeatureImageGallery = () => {
 
   const fetchFeaturedCollection = async () => {
     let data = await client.collection.fetchByHandle("frontPage");
+    console.log({ koby: data.products[0] });
     setProducts(data.products);
   };
 
