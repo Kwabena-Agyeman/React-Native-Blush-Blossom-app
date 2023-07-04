@@ -28,6 +28,23 @@ const AuthScreen = () => {
           style={styles.image}
         />
       </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+          }}
+        >
+          FOR DEMO PURPOSES USE THE FOLLOWING CREDENTIALS TO LOG IN
+        </Text>
+        <Text> </Text>
+        <Text>Email : demo@test.com</Text>
+        <Text>Password : demo123</Text>
+      </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.Button}

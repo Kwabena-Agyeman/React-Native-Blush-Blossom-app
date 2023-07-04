@@ -17,17 +17,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kagyeman.blushandblossomapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.kagyeman.blushandblossomapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "An app for a fashion store"
+    "description": "An app for a fashion store",
+    "extra": {
+      "eas": {
+        "projectId": "ef4db54c-3093-46e6-8d70-494910d69f68"
+      }
+    }
   }
 }
